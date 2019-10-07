@@ -1,0 +1,31 @@
+﻿<atlasw:SingleInstanceWindow x:Class="Atlas.ExampleApplication.SingleWindow"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:atlasc="clr-namespace:Atlas.UI.Controls;assembly=Atlas.UI"
+                             xmlns:atlasw="clr-namespace:Atlas.UI.Windows;assembly=Atlas.UI"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             Title="SingleWindow"
+                             Width="400"
+                             Height="300"
+                             ResizeBorderThickness="5"
+                             mc:Ignorable="d">
+    <Grid>
+        <atlasc:TabControl>
+            <atlasc:TabItem Header="Test 2">
+                <Grid>
+                    <atlasc:ActivitySpinner x:Name="ActivitySpinner"
+                                            Width="100"
+                                            Height="100"
+                                            Foreground="#007ACC"
+                                            IsTaskRunning="False" />
+
+                    <atlasc:Button HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Click="Button_Click"
+                                   Content="Spin me" />
+                </Grid>
+            </atlasc:TabItem>
+        </atlasc:TabControl>
+    </Grid>
+</atlasw:SingleInstanceWindow>

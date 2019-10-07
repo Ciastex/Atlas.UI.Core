@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Atlas.UI</RootNamespace>
+    <AssemblyName>Atlas.UI</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId>Atlas.UI.Core</PackageId>
+    <Authors>Ciastex</Authors>
+    <Description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</Description>
+    <Copyright>Copyright</Copyright>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\**\*.*" />
+  </ItemGroup>
+
+</Project>
