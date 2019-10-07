@@ -6,14 +6,21 @@
     <RootNamespace>Atlas.UI</RootNamespace>
     <AssemblyName>Atlas.UI</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
+    <FileVersion>1.0.9.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>Atlas.UI.Core</PackageId>
     <Authors>Ciastex</Authors>
-    <Description>Atlas.UI is a dark and elegant UI toolkit inspired by Visual Studio design.</Description>
-    <Copyright>Copyright</Copyright>
-    <Version>1.0.1</Version>
+    <Description>Atlas.UI is a dark and elegant UI toolkit for WPF, inspired by Visual Studio design. Release for .NET Core 3.0+</Description>
+    <Copyright>Copyright 2019 © Atlas.UI Developers</Copyright>
+    <Version>1.0.9</Version>
+    <PackageProjectUrl>https://github.com/Ciastex/Atlas.UI.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ciastex/Atlas.UI.Core</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Ciastex/Atlas.UI.Core/master/Atlas.UI.Shared/Logos/ProjectLogo.png</PackageIconUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>UI toolkit, WPF, GUI, UI</PackageTags>
+    <PackageReleaseNotes>First release for .NET Core 3.0+ platform.</PackageReleaseNotes>
+    <Product>Atlas UI Toolkit</Product>
   </PropertyGroup>
 
   <ItemGroup>
