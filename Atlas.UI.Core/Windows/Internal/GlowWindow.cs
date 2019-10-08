@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 
@@ -80,11 +79,6 @@ namespace Atlas.UI.Windows.Internal
                 TargetHeight,
                 WinAPI.SWP_NOOWNERZORDER | WinAPI.SWP_NOACTIVATE
             );
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
         }
 
         protected override void OnActivated(EventArgs e)
@@ -171,14 +165,18 @@ namespace Atlas.UI.Windows.Internal
 
         private void Reposition()
         {
-            TargetLeft = (int)_parentWindow.Left - 10;
-            TargetTop = (int)_parentWindow.Top - 10;
+            var source = PresentationSource.FromVisual(this);
+
+            TargetLeft = (int)((_parentWindow.Left - 10) * source.CompositionTarget.TransformToDevice.M11);
+            TargetTop = (int)((_parentWindow.Top - 10) * source.CompositionTarget.TransformToDevice.M22);
         }
 
         private void Resize()
         {
-            TargetWidth = (int)_parentWindow.Width + 20;
-            TargetHeight = (int)_parentWindow.Height + 20;
+            var source = PresentationSource.FromVisual(this);
+
+            TargetWidth = (int)((_parentWindow.Width + 20) * source.CompositionTarget.TransformToDevice.M11);
+            TargetHeight = (int)((_parentWindow.Height + 20) * source.CompositionTarget.TransformToDevice.M22);
         }
     }
 }
