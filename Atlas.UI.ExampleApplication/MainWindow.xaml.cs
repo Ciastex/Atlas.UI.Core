@@ -88,7 +88,7 @@ namespace Atlas.ExampleApplication
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
+            /*new Thread(() =>
             {
                 double v = 0;
 
@@ -102,6 +102,21 @@ namespace Atlas.ExampleApplication
 
                     Thread.Sleep(10);
                 }
+            }).Start();*/
+
+            new Thread(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    Hide();
+                });
+
+                Thread.Sleep(2000);
+
+                Dispatcher.Invoke(() =>
+                {
+                    Show();
+                });
             }).Start();
         }
     }

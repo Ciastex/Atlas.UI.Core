@@ -38,6 +38,7 @@ namespace Atlas.UI.Windows.Internal
         public GlowWindow(Window parent)
         {
             _parentWindow = parent;
+            _parentWindow.IsVisibleChanged += ParentWindow_IsVisibleChanged;
             _parentWindow.LocationChanged += ParentWindow_LocationChanged;
             _parentWindow.StateChanged += ParentWindow_StateChanged;
             _parentWindow.SizeChanged += ParentWindow_SizeChanged;
@@ -50,6 +51,19 @@ namespace Atlas.UI.Windows.Internal
             Focusable = false;
             IsEnabled = false;
             ShowInTaskbar = false;
+        }
+
+        private void ParentWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (!_parentWindow.IsVisible)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+                MoveBehindParent();
+            }
         }
 
         public void MoveBehindParent()
@@ -98,6 +112,7 @@ namespace Atlas.UI.Windows.Internal
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            _parentWindow.IsVisibleChanged -= ParentWindow_IsVisibleChanged;
             _parentWindow.LocationChanged -= ParentWindow_LocationChanged;
             _parentWindow.StateChanged -= ParentWindow_StateChanged;
             _parentWindow.SizeChanged -= ParentWindow_SizeChanged;
