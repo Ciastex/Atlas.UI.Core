@@ -48,7 +48,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-        <Setter Property="Padding" Value="4,2,23,3" />
+        <Setter Property="Padding" Value="6,3,23,3" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
 
@@ -86,7 +86,7 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="1,0,1,1" />
 
-                                <ScrollViewer Margin="1,0,2,2"
+                                <ScrollViewer Margin="2,1,2,2"
                                               RenderOptions.ClearTypeHint="Enabled"
                                               SnapsToDevicePixels="True">
                                     <ItemsPresenter x:Name="ItemsPresenter"
@@ -106,10 +106,11 @@
                                       Template="{StaticResource ComboBoxToggleButton}" />
 
                         <TextBlock x:Name="PART_Placeholder"
-                                   Margin="4"
+                                   Margin="4,0,0,0"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Foreground="#666666"
+                                   IsHitTestVisible="False"
                                    Text="{TemplateBinding Placeholder}"
                                    Visibility="Collapsed" />
 

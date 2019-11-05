@@ -1,5 +1,4 @@
 ﻿using Atlas.UI.Enums;
-using Atlas.UI.Extensions;
 using Atlas.UI.Systems;
 using System.Diagnostics;
 using System.Threading;
@@ -106,14 +105,14 @@ namespace Atlas.ExampleApplication
 
             new Thread(() =>
             {
-                Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     Hide();
                 });
 
                 Thread.Sleep(2000);
 
-                Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     Show();
                 });
