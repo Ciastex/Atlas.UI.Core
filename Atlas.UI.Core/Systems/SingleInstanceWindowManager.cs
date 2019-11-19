@@ -46,11 +46,12 @@ namespace Atlas.UI.Systems
                     throw new InvalidOperationException("Startup location of CenterOwner is invalid when Owner is not specified.");
 
                 var instance = Activator.CreateInstance<T>();
+
                 instance.Owner = owner;
                 instance.WindowStartupLocation = startupLocation;
 
                 Windows.Add(instance);
-                return instance.ShowDialog();
+                return instance.ShowSingleDialog();
             }
             else throw new InvalidOperationException("This window is already open in dialog mode.");
         }

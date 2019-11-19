@@ -1,31 +1,24 @@
 ﻿using Atlas.UI.Systems;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 
 namespace Atlas.UI.Windows
 {
     public abstract class SingleInstanceWindow : Window
     {
-        private Type GetCallingType()
-        {
-            var frame = new StackTrace().GetFrame(2).GetMethod().DeclaringType;
-            return frame;
-        }
-
         public new void Show()
-        {
-            if (!GetCallingType().IsAssignableFrom(typeof(SingleInstanceWindowManager)))
-                throw new InvalidOperationException("Use SingleInstanceWindowManager to open this type of window.");
+            => throw new InvalidOperationException("Use SingleInstanceWindowManager to open this type of window.");
 
+        public new bool? ShowDialog()
+            => throw new InvalidOperationException("Use SingleInstanceWindowManager to open this type of window.");
+
+        internal void ShowSingle()
+        {
             base.Show();
         }
 
-        public new bool? ShowDialog()
+        internal bool? ShowSingleDialog()
         {
-            if (!GetCallingType().IsAssignableFrom(typeof(SingleInstanceWindowManager)))
-                throw new InvalidOperationException("Use SingleInstanceWindowManager to open this type of window.");
-
             return base.ShowDialog();
         }
 
