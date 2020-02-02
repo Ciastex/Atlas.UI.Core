@@ -1,5 +1,6 @@
 ﻿using Atlas.UI.Enums;
 using Atlas.UI.Systems;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -9,9 +10,23 @@ namespace Atlas.ExampleApplication
 {
     public partial class MainWindow
     {
+        public List<object> ListViewItems => new List<object>
+        {
+            "test 1",
+            252341,
+            "test 3",
+            "test 4",
+            "test 5",
+            "test 6",
+            -333333,
+            "test 8",
+        };
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+
             ShadeStateChanged += MainWindow_ShadeStateChanged;
         }
 

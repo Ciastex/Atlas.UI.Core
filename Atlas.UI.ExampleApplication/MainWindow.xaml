@@ -3,6 +3,7 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:atlasc="clr-namespace:Atlas.UI.Controls;assembly=Atlas.UI"
                xmlns:atlasw="clr-namespace:Atlas.UI.Windows;assembly=Atlas.UI"
+               xmlns:exampleapplication="clr-namespace:Atlas.UI.ExampleApplication"
                Title="MainWindow"
                Width="800"
                Height="500"
@@ -11,6 +12,9 @@
                ShadeStateChanged="MainWindow_ShadeStateChanged"
                ShowIcon="True"
                UseGlowEffect="True">
+    <atlasw:Window.Resources>
+        <exampleapplication:ListViewTemplateSelector x:Key="TemplateSelector" />
+    </atlasw:Window.Resources>
     <atlasw:Window.CaptionMenu>
         <atlasc:MenuItem Header="Menu Button 1"
                          ToolTip="This is a tooltip for preview." />
@@ -20,10 +24,11 @@
                              IsCheckable="True" />
         </atlasc:MenuItem>
         <atlasc:MenuItem Header="Menu 2"
-                         IsEnabled="False">
+                         IsEnabled="True">
             <atlasc:MenuItem Header="Submenu 1">
                 <atlasc:MenuItem Header="Submenu Item 1" />
                 <atlasc:MenuItem Header="Checkable Submenu Item 1"
+                                 InputGestureText="Ctrl+P"
                                  IsCheckable="True"
                                  StaysOpenOnClick="True" />
             </atlasc:MenuItem>
@@ -229,20 +234,26 @@
                                  Height="200"
                                  Margin="4"
                                  HorizontalAlignment="Left"
-                                 VerticalAlignment="Bottom">
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
-                    <atlasc:ListViewItem Content="Test" />
+                                 VerticalAlignment="Bottom"
+                                 ItemTemplateSelector="{StaticResource TemplateSelector}"
+                                 ItemsSource="{Binding ListViewItems}">
+                    <atlasc:ListView.Resources>
+                        <DataTemplate x:Key="StringTemplate">
+                            <Grid HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  Background="Beige">
+                                <TextBlock Text="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="IntTemplate">
+                            <Grid HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  Background="Aqua">
+                                <TextBlock Text="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </atlasc:ListView.Resources>
                 </atlasc:ListView>
 
                 <StackPanel Grid.Row="0"
