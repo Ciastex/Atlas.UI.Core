@@ -5,7 +5,6 @@ using Atlas.UI.Windows.Internal;
 using Atlas.UI.Windows.States;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,7 +13,7 @@ using System.Windows.Shell;
 
 namespace Atlas.UI.Windows
 {
-    public class Window : System.Windows.Window, INotifyPropertyChanged
+    public class Window : System.Windows.Window
     {
         public const int ShadedWindowHeight = 31;
 
@@ -92,153 +91,100 @@ namespace Atlas.UI.Windows
                 }
 
                 SetValue(ShadeStateProperty, value);
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShadeState)));
                 ShadeStateChanged?.Invoke(this, new ShadeStateChangedEventArgs(value));
             }
         }
 
         public ObservableCollection<MenuItem> CaptionMenu
         {
-            get { return (ObservableCollection<MenuItem>)GetValue(CaptionMenuProperty); }
-            set
-            {
-                SetValue(CaptionMenuProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionMenu)));
-            }
+            get => (ObservableCollection<MenuItem>)GetValue(CaptionMenuProperty);
+            set => SetValue(CaptionMenuProperty, value);
         }
 
         public bool CanMaximize
         {
-            get { return (bool)GetValue(CanMaximizeProperty); }
+            get => (bool)GetValue(CanMaximizeProperty);
             set
             {
                 this.SetMaximization(value);
-
                 SetValue(CanMaximizeProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanMaximize)));
-            }
-        }
-        public bool CanShade
-        {
-            get { return (bool)GetValue(CanShadeProperty); }
-            set
-            {
-                SetValue(CanShadeProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanShade)));
             }
         }
 
         public bool CanResize
         {
-            get { return (bool)GetValue(CanResizeProperty); }
+            get => (bool)GetValue(CanResizeProperty);
             set
             {
                 this.SetResizing(value);
-
                 SetValue(CanResizeProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanResize)));
             }
+        }
+
+        public bool CanShade
+        {
+            get => (bool)GetValue(CanShadeProperty);
+            set => SetValue(CanShadeProperty, value);
         }
 
         public bool ShowCaptionBorder
         {
-            get { return (bool)GetValue(ShowCaptionBorderProperty); }
-            set
-            {
-                SetValue(ShowCaptionBorderProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowCaptionBorder)));
-            }
+            get => (bool)GetValue(ShowCaptionBorderProperty);
+            set => SetValue(ShowCaptionBorderProperty, value);
         }
 
         public bool ShowMaximizeButton
         {
-            get { return (bool)GetValue(ShowMaximizeButtonProperty); }
-            set
-            {
-                SetValue(ShowMaximizeButtonProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowMaximizeButton)));
-            }
+            get => (bool)GetValue(ShowMaximizeButtonProperty);
+            set => SetValue(ShowMaximizeButtonProperty, value);
         }
 
         public bool ShowShadeButton
         {
-            get { return (bool)GetValue(ShowShadeButtonProperty); }
-            set
-            {
-                SetValue(ShowShadeButtonProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowShadeButton)));
-            }
+            get => (bool)GetValue(ShowShadeButtonProperty);
+            set => SetValue(ShowShadeButtonProperty, value);
         }
 
         public bool ShowCloseButton
         {
-            get { return (bool)GetValue(ShowCloseButtonProperty); }
-            set
-            {
-                SetValue(ShowCloseButtonProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowCloseButton)));
-            }
+            get => (bool)GetValue(ShowCloseButtonProperty);
+            set => SetValue(ShowCloseButtonProperty, value);
         }
 
         public bool ShowMinimizeButton
         {
-            get { return (bool)GetValue(ShowMinimizeButtonProperty); }
-            set
-            {
-                SetValue(ShowMinimizeButtonProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowMinimizeButton)));
-            }
+            get => (bool)GetValue(ShowMinimizeButtonProperty);
+            set => SetValue(ShowMinimizeButtonProperty, value);
         }
 
         public CaptionElementAlignment CaptionMenuAlignment
         {
             get => (CaptionElementAlignment)GetValue(CaptionMenuAlignmentProperty);
-            set
-            {
-                SetValue(CaptionMenuAlignmentProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionMenuAlignment)));
-            }
+            set => SetValue(CaptionMenuAlignmentProperty, value);
         }
 
         public CaptionElementAlignment CaptionTitleAlignment
         {
             get => (CaptionElementAlignment)GetValue(CaptionTitleAlignmentProperty);
-            set
-            {
-                SetValue(CaptionTitleAlignmentProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionTitleAlignment)));
-            }
+            set => SetValue(CaptionTitleAlignmentProperty, value);
         }
 
         public CaptionElementAlignment CaptionButtonsAlignment
         {
             get => (CaptionElementAlignment)GetValue(CaptionButtonsAlignmentProperty);
-            set
-            {
-                SetValue(CaptionButtonsAlignmentProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
-            }
+            set => SetValue(CaptionButtonsAlignmentProperty, value);
         }
 
         public object CustomCaptionContent
         {
             get => GetValue(CustomCaptionContentProperty);
-            set
-            {
-                SetValue(CustomCaptionContentProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptionButtonsAlignment)));
-            }
+            set => SetValue(CustomCaptionContentProperty, value);
         }
 
         public bool ShowIcon
         {
             get => (bool)GetValue(ShowIconProperty);
-            set
-            {
-                SetValue(ShowIconProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ShowIcon)));
-            }
+            set => SetValue(ShowIconProperty, value);
         }
 
         public bool UseGlowEffect
@@ -261,7 +207,6 @@ namespace Atlas.UI.Windows
                 }
 
                 SetValue(UseGlowEffectProperty, value);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UseGlowEffect)));
             }
         }
 
@@ -276,13 +221,10 @@ namespace Atlas.UI.Windows
                 {
                     Glow.GlowBrush = GlowEffectBrush;
                 }
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GlowEffectBrush)));
             }
         }
 
         public event EventHandler<ShadeStateChangedEventArgs> ShadeStateChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         static Window()
         {
@@ -320,10 +262,10 @@ namespace Atlas.UI.Windows
 
             base.OnApplyTemplate();
 
-            CloseButton = GetTemplateChild("PART_Close") as System.Windows.Controls.Button;
-            MaximizeButton = GetTemplateChild("PART_Maximize") as System.Windows.Controls.Button;
-            MinimizeButton = GetTemplateChild("PART_Minimize") as System.Windows.Controls.Button;
-            ShadeButton = GetTemplateChild("PART_Shade") as System.Windows.Controls.Button;
+            CloseButton = GetTemplateChild("PART_Close") as Button;
+            MaximizeButton = GetTemplateChild("PART_Maximize") as Button;
+            MinimizeButton = GetTemplateChild("PART_Minimize") as Button;
+            ShadeButton = GetTemplateChild("PART_Shade") as Button;
 
             CaptionBorder = GetTemplateChild("PART_Caption") as Border;
             MainBorder = GetTemplateChild("PART_MainBorder") as Border;
