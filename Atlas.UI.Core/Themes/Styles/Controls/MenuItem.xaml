@@ -113,6 +113,7 @@
                 <ColumnDefinition Width="4" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Rectangle Name="CheckMark"
@@ -138,11 +139,19 @@
                        Foreground="WhiteSmoke"
                        Text="{TemplateBinding Header}" />
 
+            <TextBlock x:Name="HotkeyTextBlock"
+                       Grid.Column="3"
+                       Margin="24,0,5,0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Foreground="#888888"
+                       Text="{TemplateBinding InputGestureText}" />
         </Grid>
 
         <ControlTemplate.Triggers>
             <Trigger Property="IsHighlighted" Value="True">
                 <Setter TargetName="PART_Main" Property="Background" Value="#3E3E40" />
+                <Setter TargetName="HotkeyTextBlock" Property="Foreground" Value="#101010" />
             </Trigger>
 
             <Trigger Property="Icon" Value="{x:Null}">
@@ -159,6 +168,7 @@
 
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="HeaderTextBlock" Property="Opacity" Value="0.4" />
+                <Setter TargetName="HotkeyTextBlock" Property="Opacity" Value="0.4" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
