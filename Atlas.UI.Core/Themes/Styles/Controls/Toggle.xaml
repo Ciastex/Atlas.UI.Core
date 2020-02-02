@@ -44,7 +44,8 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0"
+                                <TextBlock x:Name="PART_ToggledStateText"
+                                           Grid.Column="0"
                                            Margin="6,2"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
@@ -59,7 +60,8 @@
                                            Fill="{TemplateBinding UntoggledStateBrush}"
                                            Stroke="{TemplateBinding UntoggledStateBrush}" />
 
-                                <TextBlock Grid.Column="1"
+                                <TextBlock x:Name="PART_UntoggledStateText"
+                                           Grid.Column="1"
                                            Margin="6,2"
                                            HorizontalAlignment="Stretch"
                                            VerticalAlignment="Stretch"
@@ -71,6 +73,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="PART_UntoggledStateText" Property="Foreground" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="PART_ToggleBorder" Property="BorderBrush" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="PART_ToggleElement" Property="Fill" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter TargetName="PART_ToggleElement" Property="Stroke" Value="{Binding ToggledStateBrush, RelativeSource={RelativeSource TemplatedParent}}" />
