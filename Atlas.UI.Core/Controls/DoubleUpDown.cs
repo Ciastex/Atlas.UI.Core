@@ -11,11 +11,14 @@ using System.Windows.Input;
 
 namespace Atlas.UI.Controls
 {
-    public class IntegerUpDown : Control
+    public class DoubleUpDown : Control
     {
-        public static DependencyProperty MaximumProperty = Dependency.Register<int>(nameof(Maximum));
-        public static DependencyProperty MinimumProperty = Dependency.Register<int>(nameof(Minimum));
-        public static DependencyProperty ValueProperty = Dependency.Register<int>(nameof(Value));
+        public static DependencyProperty MaximumProperty = Dependency.Register<double>(nameof(Maximum));
+        public static DependencyProperty MinimumProperty = Dependency.Register<double>(nameof(Minimum));
+        public static DependencyProperty ValueProperty = Dependency.Register<double>(nameof(Value));
+        public static DependencyProperty StepProperty = Dependency.Register<double>(nameof(Step));
+        public static DependencyProperty DigitsAfterDecimalProperty = Dependency.Register<int>(nameof(DigitsAfterDecimal));
+
         public static DependencyProperty DisallowUserInputProperty = Dependency.Register<bool>(nameof(DisallowUserInput));
         public static DependencyProperty ValueAlignmentProperty = Dependency.Register<TextAlignment>(nameof(ValueAlignment));
         public static DependencyProperty ValueOverflowBehaviorProperty = Dependency.Register<NumberOverflowBehavior>(nameof(ValueOverflowBehavior));
@@ -31,28 +34,40 @@ namespace Atlas.UI.Controls
 
         private bool _countingUp;
 
-        public int Maximum
+        public double Maximum
         {
-            get => (int)GetValue(MaximumProperty);
+            get => (double)GetValue(MaximumProperty);
             set => SetValue(MaximumProperty, value);
         }
 
-        public int Minimum
+        public double Minimum
         {
-            get => (int)GetValue(MinimumProperty);
+            get => (double)GetValue(MinimumProperty);
             set => SetValue(MinimumProperty, value);
+        }
+
+        public double Value
+        {
+            get => (double)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
+        }
+
+        public double Step
+        {
+            get => (double)GetValue(StepProperty);
+            set => SetValue(StepProperty, value);
+        }
+
+        public int DigitsAfterDecimal
+        {
+            get => (int)GetValue(DigitsAfterDecimalProperty);
+            set => SetValue(DigitsAfterDecimalProperty, value);
         }
 
         public bool DisallowUserInput
         {
             get => (bool)GetValue(DisallowUserInputProperty);
             set => SetValue(DisallowUserInputProperty, value);
-        }
-
-        public int Value
-        {
-            get => (int)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
         }
 
         public TextAlignment ValueAlignment
@@ -67,12 +82,12 @@ namespace Atlas.UI.Controls
             set => SetValue(ValueOverflowBehaviorProperty, value);
         }
 
-        static IntegerUpDown()
+        static DoubleUpDown()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(IntegerUpDown), new FrameworkPropertyMetadata(typeof(IntegerUpDown)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(DoubleUpDown), new FrameworkPropertyMetadata(typeof(DoubleUpDown)));
         }
 
-        public IntegerUpDown()
+        public DoubleUpDown()
         {
             _spinTimer = new Timer(75);
             _buttonHoldTimer = new Timer(500);
@@ -102,7 +117,6 @@ namespace Atlas.UI.Controls
             if (_inputTextBox != null)
             {
                 CommandManager.AddPreviewExecutedHandler(_inputTextBox, _inputTextBox_PreviewCommandExecuted);
-                _inputTextBox.PreviewTextInput += _inputTextBox_PreviewTextInput;
                 _inputTextBox.TextChanged += _inputTextBox_TextChanged;
             }
 
@@ -113,7 +127,7 @@ namespace Atlas.UI.Controls
         {
             if (e.ChangedButton != MouseButton.Left) return;
 
-            StepValue(1);
+            StepValue(Step);
 
             _countingUp = true;
             _buttonHoldTimer.Start();
@@ -133,7 +147,7 @@ namespace Atlas.UI.Controls
         {
             if (e.ChangedButton != MouseButton.Left) return;
 
-            StepValue(-1);
+            StepValue(-Step);
 
             _countingUp = false;
             _buttonHoldTimer.Start();
@@ -148,7 +162,7 @@ namespace Atlas.UI.Controls
                 if (string.IsNullOrEmpty(text))
                     e.Handled = true;
 
-                if (text.Any(x => !char.IsDigit(x)))
+                if (!double.TryParse(text, NumberStyles.AllowLeadingSign & ~NumberStyles.AllowLeadingWhite & ~NumberStyles.AllowTrailingWhite, null, out _))
                     e.Handled = true;
             }
         }
@@ -164,15 +178,9 @@ namespace Atlas.UI.Controls
             }
         }
 
-        private void _inputTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (!int.TryParse(e.Text, NumberStyles.AllowLeadingSign & ~NumberStyles.AllowLeadingWhite & ~NumberStyles.AllowTrailingWhite, null, out int parseResult))
-                e.Handled = true;
-        }
-
         private void _spinTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(() => StepValue(_countingUp ? 1 : -1));
+            Dispatcher.Invoke(() => StepValue(_countingUp ? Step : -Step));
         }
 
         private void _buttonHoldTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -183,7 +191,7 @@ namespace Atlas.UI.Controls
                 _spinTimer.Interval -= 5;
         }
 
-        public void StepValue(int by)
+        public void StepValue(double by)
         {
             if (Value + by > Maximum)
             {
@@ -212,6 +220,8 @@ namespace Atlas.UI.Controls
                 }
             }
             else Value += by;
+
+            Value = Math.Round(Value, DigitsAfterDecimal);
         }
     }
 }

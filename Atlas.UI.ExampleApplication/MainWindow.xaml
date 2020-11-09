@@ -89,7 +89,7 @@
 
                     <atlasc:ToggleImageButton HorizontalAlignment="Left"
                                               VerticalAlignment="Stretch"
-                                              Content="hello"
+                                              Content="{Binding SelectedThing}"
                                               Image="pack://application:,,,/Atlas.UI;component/Resources/Images/icons/file.png"
                                               ImageHeight="16"
                                               ImageWidth="16" />
@@ -98,7 +98,7 @@
                                         Width="100"
                                         AcceptsReturn="True"
                                         PasswordEntered="PasswordBox_TEST_PasswordEntered"
-                                        Placeholder="Password"
+                                        Placeholder="{Binding SelectedThing}"
                                         ShowPlaceholder="True" />
                 </StackPanel>
 
@@ -172,6 +172,11 @@
                                    Content="Button 8" />
                     <atlasc:Button Content="Disabled Button"
                                    IsEnabled="False" />
+
+                    <!--<atlasc:SearchBox DefaultToAllOnFilterFailure="True"
+                                      Filter="{Binding FilterThing}"
+                                      ItemsSource="{Binding ListViewItems}"
+                                      SelectedItem="{Binding SelectedThing, Mode=TwoWay}" />-->
                 </StackPanel>
 
                 <atlasc:GroupBox Grid.Column="4"
@@ -260,6 +265,7 @@
                             Grid.Column="1"
                             HorizontalAlignment="Stretch">
                     <atlasc:ProgressBar x:Name="Progressbar"
+                                        Width="Auto"
                                         Height="24"
                                         Margin="4"
                                         HorizontalAlignment="Stretch"
@@ -375,8 +381,9 @@
 
         <atlasc:TabItem Header="Tab Item 5">
             <Grid>
-                <atlasc:IntegerUpDown Width="100"
+                <atlasc:DoubleUpDown Width="100"
                                       Height="100"
+                                     Step="0.1"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center" />
             </Grid>

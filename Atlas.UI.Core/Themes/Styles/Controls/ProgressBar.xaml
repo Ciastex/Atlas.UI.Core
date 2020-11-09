@@ -19,7 +19,7 @@
                         <converters:ProgressTextFormatConverter x:Key="ProgressTextFormatConverter" />
                     </ControlTemplate.Resources>
 
-                    <Grid>
+                    <Grid x:Name="TemplateRoot">
                         <Border x:Name="PART_Track"
                                 Padding="{TemplateBinding Padding}"
                                 Background="{TemplateBinding Background}"

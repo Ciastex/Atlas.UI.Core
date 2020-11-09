@@ -39,7 +39,5 @@ namespace Atlas.UI.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Toggle), new FrameworkPropertyMetadata(typeof(Toggle)));
         }
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Atlas.UI.Enums
 {
-    public enum IntegerOverflowBehavior
+    public enum NumberOverflowBehavior
     {
         Clamp,
         RollOver

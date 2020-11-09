@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ComboBoxItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/DoubleUpDown.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ImageButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/IntegerUpDown.xaml" />
@@ -20,13 +21,15 @@
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ProgressBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/RadioButton.xaml" />
+        <!--<ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/SearchBox.xaml" />-->
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/TableView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/TableViewItem.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/Toggle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ToggleButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Controls/ToggleImageButton.xaml" />
-
+        
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Windows/Internal/GlowWindow.xaml" />
+        
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Windows/Window.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Atlas.UI;component/Themes/Styles/Windows/MessageBox.xaml" />
     </ResourceDictionary.MergedDictionaries>

@@ -3,11 +3,11 @@ using System;
 
 namespace Atlas.UI.Events
 {
-    public class IntegerUpDownRollOverEventArgs : EventArgs
+    public class UpDownRollOverEventArgs : EventArgs
     {
         public RollOverDirection Direction { get; }
 
-        public IntegerUpDownRollOverEventArgs(RollOverDirection direction)
+        public UpDownRollOverEventArgs(RollOverDirection direction)
         {
             Direction = direction;
         }

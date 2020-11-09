@@ -1,14 +1,15 @@
-﻿using Atlas.UI.Enums;
-using Atlas.UI.Systems;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
+using Atlas.UI.Enums;
+using Atlas.UI.Systems;
 using MessageBox = Atlas.UI.Windows.MessageBox;
 
 namespace Atlas.ExampleApplication
 {
-    public partial class MainWindow
+    public partial class MainWindow : INotifyPropertyChanged
     {
         public List<object> ListViewItems => new List<object>
         {
@@ -21,6 +22,20 @@ namespace Atlas.ExampleApplication
             -333333,
             "test 8",
         };
+
+        private string _test;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string SelectedThing
+        {
+            get => _test;
+            set
+                {
+                _test = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedThing)));
+            }
+        }
 
         public MainWindow()
         {
